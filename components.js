@@ -141,33 +141,63 @@ const students = [{
 
 // Challenge: Composition of smaller components
 
+// const container = document.querySelector("#container")
+
+// const h1 = (status, content) => {
+//     return `<h1 class="xx-large ${status}">${content}</h1>`
+// }
+// const section = (content) => {
+//     return `<section class="bordered dashed section--padded">${content}</section>`
+// }
+// const aside = (content) => {
+//     return `<aside class="pushRight">${content}</aside>`
+// }
+// status = ""
+// const studentComponent = (student) => {
+    
+//     if (student.score >= 60) {
+//         status = "passing"
+//         return `<div class="student">
+//         ${h1(status, student.name)}
+//         ${section(student.subject)} 
+//         ${aside(student.info)}
+//         </div>`
+//     }  else {
+//         status = "failing"
+//         return  `<div class="student">
+//         ${h1(status, student.name)}
+//         ${section(student.subject)}
+//         ${aside(student.info)}
+//         </div>`
+//     }
+// }
+
+// for (const student of students) {
+//     container.innerHTML += studentComponent(student)
+// }
+
+
+// Challenge: Generic HTML Function
+
 const container = document.querySelector("#container")
 
-const h1 = (status, content) => {
-    return `<h1 class="xx-larege ${status}">${content}</h1>`
+const element = (type,classValue,content) => {
+    return `<${type} class="${classValue}">${content}</${type}>`
 }
-const section = (content) => {
-    return `<section class="bordered dashed section--padded">${content}</section>`
-}
-const aside = (content) => {
-    return `<aside class="pushRight">${content}</aside>`
-}
-status = ""
+
 const studentComponent = (student) => {
     
     if (student.score >= 60) {
-        status = "passing"
         return `<div class="student">
-        ${h1(status, student.name)}
-        ${section(student.subject)} 
-        ${aside(student.info)}
+        ${element("h1", "xx-large passing", student.name)}
+        ${element("section", "bordered dashed section--padded", student.subject)} 
+        ${element("aside", "pushRight", student.info)}
         </div>`
     }  else {
-        status = "failing"
-        return  `<div class="student">
-        ${h1(status, student.name)}
-        ${section(student.subject)}
-        ${aside(student.info)}
+        return `<div class="student">
+        ${element("h1", "xx-large failing", student.name)}
+        ${element("section", "bordered dashed section--padded", student.subject)} 
+        ${element("aside", "pushRight", student.info)}
         </div>`
     }
 }
